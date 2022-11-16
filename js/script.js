@@ -9,6 +9,7 @@ const allReposElement = document.querySelector(".repos");
 const repoDataElement = document.querySelector(".repo-data");
 //button to return to full repo gallery
 const viewReposButton = document.querySelector(".view-repos");
+//input for searching repo names
 const filterInput = document.querySelector(".filter-repos");
 
 
@@ -52,15 +53,15 @@ const showUserData = function(userData){
 const fetchRepos = async function (){
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const allRepos = await response.json();
-    //console.log(repos);
+    //console.log(allRepos);
     displayReposList(allRepos);
     
 };
 
 //display the fetched repos
-const displayReposList = function (repos){ //not sure about this parameter
+const displayReposList = function(repos){ 
     filterInput.classList.remove("hide");
-    for (const repo of repos) { // or this const
+    for (const repo of repos) {
         const li = document.createElement("li");
         li.classList.add("repo");
         const repoTitle = repo.name; //was repoName, but changed to distinguish from repoName required below
@@ -72,16 +73,14 @@ const displayReposList = function (repos){ //not sure about this parameter
 fetchRepos();
 
 //listen for click on a single repo's name
-const repoList = repoListElement.addEventListener("click", function(e){ //can you name an event listener? Apparently yes.
+repoListElement.addEventListener("click", function(e){ 
     if (e.target.matches("h3")) {
-        const repoName = e.target.innerText; //shouldn't reuse variable names
-        fetchSingleRepoData(repoName);
+        fetchSingleRepoData(e.target.innerText);
     }
-
 });
 
 //grab data for the clicked-on single repo
-const fetchSingleRepoData = async function (repoName){ //why can we call for this parameter? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement? Update: Yep, that's what happened.
+const fetchSingleRepoData = async function (repoName){
     const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await response.json();
     //console.log(repoInfo);
@@ -140,5 +139,3 @@ filterInput.addEventListener("input", function(e){
         }  
     }
 });
-
-//to do: add functionality to filter by language
