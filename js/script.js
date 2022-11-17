@@ -65,7 +65,7 @@ const displayReposList = function(repos){
         const li = document.createElement("li");
         li.classList.add("repo");
         const repoTitle = repo.name;
-        li.innerHTML = `<h3>${repoTitle}</h3>`; 
+        li.innerHTML = `<button><h3>${repoTitle}</h3></button>`; 
         repoListElement.append(li);
     })
 };
@@ -74,7 +74,8 @@ fetchRepos();
 
 //listen for click on a single repo's name
 repoListElement.addEventListener("click", function(e){ 
-    if (e.target.matches("h3")) {
+    // console.log(e.target.innerText);
+    if (e.target.matches("button")) {
         fetchSingleRepoData(e.target.innerText);
     }
 });
