@@ -61,13 +61,13 @@ const fetchRepos = async function (){
 //display the fetched repos
 const displayReposList = function(repos){ 
     filterInput.classList.remove("hide");
-    for (const repo of repos) {
+    repos.forEach((repo) => {
         const li = document.createElement("li");
         li.classList.add("repo");
-        const repoTitle = repo.name; //was repoName, but changed to distinguish from repoName required below
+        const repoTitle = repo.name;
         li.innerHTML = `<h3>${repoTitle}</h3>`; 
         repoListElement.append(li);
-    }
+    })
 };
 
 fetchRepos();
@@ -130,12 +130,12 @@ filterInput.addEventListener("input", function(e){
     const repos = document.querySelectorAll(".repo");
     //console.log(repos);
     //console.log(lowerSearchText);
-    for (const repo of repos) {
+    repos.forEach((repo) => {
         let lowerRepoName = repo.innerText.toLowerCase();
         if (lowerRepoName.includes(lowerSearchText)) { 
             repo.classList.remove("hide");
         } else {
             repo.classList.add("hide");
         }  
-    }
+    })
 });
