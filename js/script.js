@@ -75,9 +75,7 @@ fetchRepos();
 //listen for click on a single repo's name
 repoListElement.addEventListener("click", function(e){ 
     // console.log(e.target.innerText);
-    if (e.target.matches("button")) {
-        fetchSingleRepoData(e.target.innerText);
-    }
+    fetchSingleRepoData(e.target.innerText);
 });
 
 //grab data for the clicked-on single repo

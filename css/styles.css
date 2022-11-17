@@ -139,10 +139,13 @@ ul {
     align-items: flex-start;
 }
 
-.repo-list li {
+.repo-list button {
     width: 90%;
     margin: 1em 0;
-    border: 1px solid var(--secondary);
+    padding: 0;
+    border: 2px solid var(--secondary);
+    background-color: #fff;
+    color: var(--secondary);
 }
 
 .repo-list h3 {
@@ -185,12 +188,12 @@ section.repo-data {
     cursor: pointer;
     display: block;
     background-color: var(--primary);
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .repo-data .visit:hover {
-    background-color: #2f2550;
-    border: 1px solid #ccc;
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
 }
 
 .view-repos {
@@ -201,7 +204,13 @@ section.repo-data {
     align-self: center;
     background-color: #fff;
     color: var(--primary);
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.view-repos:hover {
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
+    color: #fff;
 }
 
 .button-container {
